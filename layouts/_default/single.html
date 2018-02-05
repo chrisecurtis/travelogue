@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>{{ .Title }}</title>
+</head>
+<body>
+  {{ partial "header.html" . }}
+  <div class="navigation">
+    <div class="centre-nav">
+      &nbsp;&diams;&nbsp;<a href="{{.Site.BaseURL}}">Home</a>&nbsp;&diams;&nbsp; 
+      {{ range $key, $value := .Site.Taxonomies.categories }}
+        <a href="/categories/{{ $key | urlize }}">{{ $key | title }}</a>&nbsp;&diams;&nbsp; 
+      {{ end }}
+    </div>
+  </div>
+  <div class="single-page-title">
+    <h3>{{ .Date.Format "Monday 2 January 2006" }}</h3>
+    <h1>{{ .Title }}</h1>
+  </div>
+  <div class="single-page-image">
+    <img src="{{ .Params.image }}" alt="{{ .Params.alt }}">
+  </div>
+  <div class="single-page-content">
+    <p>{{ .Content }}</p>
+  </div>
+  {{ partial "footer.html" . }}
+</body>
+</html>

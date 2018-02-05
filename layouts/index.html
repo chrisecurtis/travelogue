@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<body>
+	<!-- insert header section -->
+	{{ partial "header.html" . }}
+
+	<!-- create a paginated list of posts -->
+	{{ $paginator := .Paginate (where .Data.Pages "Type" "post") 6 }}
+	<!-- create menu as forward and back navigation links to paginated pages and links to categories-->
+	<div class="navigation">
+		{{ if .Paginator.HasNext }}
+		<div class="left-nav">
+			<a href="{{ .Paginator.Next.URL }}">&nbsp;
+				<--- Older&nbsp;</a>
+		</div>
+		{{ end }} 
+		<div class="centre-nav">
+				&nbsp;&diams;&nbsp;<a href="{{.Site.BaseURL}}">Home</a>&nbsp;&diams;&nbsp;
+			{{ range $key, $value := .Site.Taxonomies.categories }}
+				<a href="/categories/{{ $key | urlize }}">{{ $key | title }}</a>&nbsp;&diams;&nbsp;
+			{{ end }}
+				</div>
+		{{ if .Paginator.HasPrev }}
+		<div class="right-nav">
+			<a href="{{ .Paginator.Prev.URL }}">&nbsp;Newer --->&nbsp;</a>
+		</div>
+		{{ end }}
+	</div>
+
+	{{ range $index, $element := $paginator.Pages }}
+	<!-- do this for each post in the list -->
+	{{if mod $index 2}}
+		<!-- set variable to position image right of text if an even index number so images and text alternate -->
+		{{ $.Scratch.Set "position" "right" }} 
+	{{else}}
+		<!-- set variable to position image left of text if an odd index number -->
+		{{ $.Scratch.Set "position" "left"}} 
+	{{end}} 
+	{{if not ( .Params.image )}}
+		<!-- set variable to position across the full page if there is no image -->
+		{{ $.Scratch.Set "position" "full" }} 
+	{{ end }}
+
+	<!-- output the post date, title, summary (and image) in the correct positions -->
+	{{if eq ($.Scratch.Get "position") "left" }}
+		<!-- output a row with the image to the left -->
+		<div class="homepage-row">
+			<div class="homepage-set-left">
+				<a href="{{ .Permalink }}">
+					<img src="{{ .Params.image }}" alt="{{ .Params.alt }}">
+				</a>
+			</div>
+			<div class="homepage-set-right">
+				<h3>{{ .Date.Format "Monday 2 January, 2006" }}</h3>
+				<h2>
+					<a href="{{ .Permalink }}">{{ .Title }}</a>
+				</h2>
+				<p>{{ .Summary }}</p>
+				<p>
+					<a href="{{ .Permalink }}">Read more...</a>
+				</p>
+			</div>
+		</div>
+	{{end}} 
+	{{if eq ($.Scratch.Get "position") "right"}}
+		<!-- output a row with the image to the right -->
+		<div class="homepage-row">
+			<div class="homepage-set-left">
+				<h3>{{ .Date.Format "Monday 2 January, 2006" }}</h3>
+				<h2>
+					<a href="{{ .Permalink }}">{{ .Title }}</a>
+				</h2>
+				<p>{{ .Summary }}</p>
+				<p>
+					<a href="{{ .Permalink }}">Read more...</a>
+				</p>
+			</div>
+			<div class="homepage-set-right">
+				<a href="{{ .Permalink }}">
+					<img src="{{ .Params.image }}" alt="{{ .Params.alt}}">
+				</a>
+			</div>
+		</div>
+	{{end}} 
+	{{if eq ($.Scratch.Get "position") "full"}}
+		<!-- output a row with no image and the text across the full page -->
+		<div class="homepage-row">
+			<div class="homepage-set-full">
+				<h3>{{ .Date.Format "Monday 2 January, 2006" }}</h3>
+				<h2>
+					<a href="{{ .Permalink }}">{{ .Title }}</a>
+				</h2>
+				<p>{{ .Summary }}</p>
+				<p>
+					<a href="{{ .Permalink }}">Read more...</a>
+				</p>
+			</div>
+		</div>
+	{{end}} 
+{{end}}
+
+	<!-- create a list of pages -->
+	{{ range .Data.Pages }} 
+		{{ if eq .Type "pages" }}
+			<div class="homepage-row-pages">
+				<div class="homepage-set-full">
+					<h3>{{ .Date.Format "Monday 2 January, 2006" }}</h3>
+					<h2>
+						<a href="{{ .Permalink }}">{{ .Title }}</a>
+					</h2>
+				</div>
+			</div>
+		{{ end }} 
+	{{ end }}
+
+	<!-- insert footer section -->
+	{{ partial "footer.html" . }}
+</body>
+</html>

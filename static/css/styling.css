@@ -1,0 +1,140 @@
+/* This style sheet sets all aspects of styling i.e. fonts, text weights, sizes and text-decoration, colours,
+borders and any aspect of appearance except page layout and positioning (which is set in the layout stylesheet).
+A number of the classes have different parameters set in both stylesheets */
+
+
+/* The theme uses two fonts - the first mainly for headlines and information, the second for body text etc. */
+@import url('https://fonts.googleapis.com/css?family=Abril+Fatface');
+@import url('https://fonts.googleapis.com/css?family=Crimson+Text');
+
+/* Colours for the whole theme are set here and called from these variables */
+:root {
+    --main-bg-colour: #858386;
+    --secondary-bg-colour: #d6d4d2 ;
+    --main-fg-colour: black;
+    --secondary-fg-colour: #333333;
+    --text-bg-colour: #FDF8F3;
+    --text-mainfg-colour: #262728;
+    --text-secondaryfg-colour: #333333;
+    --accent-colour: #181828;
+  }
+
+/* set a default text style if not otherwise styled
+sets page background colour */
+body {
+    font-family: "Crimson Text", serif;
+    color: var(--text-mainfg-colour);
+    background-color: var(--main-bg-colour);
+}
+
+/* sets links not to have underlines except when cursor hovering over*/
+a {
+    text-decoration: none;
+    color: var(--text-secondaryfg-colour);
+}
+
+a:hover {
+    text-decoration: underline;
+} 
+
+/* set styles for the homepage */
+.homepage-row, .homepage-row-pages {
+    background-color: var(--secondary-bg-colour);
+    padding: 0px;
+    margin: 3em;
+}
+
+.homepage-row p {
+    margin: 2em;
+    margin-top: 0.5em;
+}
+
+.homepage-row h3 {
+    text-align: center;
+    padding: 0%;
+    margin-bottom: 0%;
+    color: var(--text-secondaryfg-colour);
+}
+
+.homepage-row h2 {
+    font-family: "Abril Fatface";
+    font-size: 2.5em;
+    padding: 0%;
+    margin: 0%;
+text-align: center;
+    color: var(--text-secondaryfg-colour);
+}
+
+.homepage-row-pages h3 {
+    text-align: center;
+    padding: 0%;
+    margin-bottom: 0%;
+}
+
+.homepage-row-pages h2 {
+    font-family: "Abril Fatface";
+    font-size: 2.5em;
+    padding: 0%;
+    margin: 0%;
+    text-align: center;
+    color: var(--text-secondaryfg-colour);
+}
+.homepage-set-left, .homepage-set-right, .homepage-set-full {
+    background-color: var(--text-bg-colour);
+    word-break: keep-all;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.navigation {
+    background-color: var(--secondary-bg-colour);
+    font-family: "Abril Fatface", serif;
+}
+
+/* set styles for the header */
+.header {
+    background-color: var(--secondary-bg-colour);
+    background-image: url("/img/featured/header-background.jpg");
+    background-size: cover;
+}
+
+.header h1 {
+    font-family: "Abril Fatface", serif;
+    font-size: 5em;
+    text-align: center;
+    color: var(--accent-colour);
+
+}
+
+/* set styles for the footer */
+.footer {
+    background-color: var(--secondary-bg-colour);
+    font-family: "Crimson Sans", serif;
+    font-style: italic;
+}
+
+/* set styles for single pages */
+.single-page-title {
+    font-family: "Abril Fatface", serif;
+    color: var(--text-secondaryfg-colour);
+    background-color: var(--secondary-bg-colour);
+    text-align: center;
+}
+
+.single-page-title h3 {
+    font-size: 1.2em;
+    padding-top: .4em;
+    padding-bottom: 0%;
+    margin-bottom: 0%;
+}
+
+.single-page-title h1 {
+    font-size: 3em;
+    padding-top: 0%;
+    margin-top: 0%;
+}
+
+.single-page-content {
+    background-color: var(--text-bg-colour);
+    padding: 1em;
+}
