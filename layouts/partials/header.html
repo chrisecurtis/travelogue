@@ -1,5 +1,15 @@
+<!DOCTYPE HTML>
+<html>
+<head>
 <link rel="stylesheet" type="text/css" href="/css/layout.css">
 <link rel="stylesheet" type="text/css" href="/css/styling.css">
+<meta charset="utf-8">
+<base href="{{ .Site.BaseURL }}">
+    <title> {{ .Title }}</title>
+    <link rel="canonical" href="{{ .Permalink }}">
+    {{ if .RSSLink }}<link href="{{ .RSSLink }}" rel="alternate" type="application/rss+xml" title="{{ .Title }}" />{{ end }}
+</head>
+<body>
 <div class="header">
-    <a href="{{.Site.BaseURL}}"><h1>Old Man Exploring</h1></a>
+    <a href="{{.Site.BaseURL}}"><h1>{{ .Site.Title }}</h1></a>
 </div>

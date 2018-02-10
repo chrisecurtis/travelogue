@@ -1,9 +1,5 @@
-<!DOCTYPE html>
-<html>
-<body>
 	<!-- insert header section -->
 	{{ partial "header.html" . }}
-
 	<!-- create a paginated list of posts -->
 	{{ $paginator := .Paginate (where .Data.Pages "Type" "post") 6 }}
 	<!-- create menu as forward and back navigation links to paginated pages and links to categories-->
@@ -26,7 +22,6 @@
 		</div>
 		{{ end }}
 	</div>
-
 	{{ range $index, $element := $paginator.Pages }}
 	<!-- do this for each post in the list -->
 	{{if mod $index 2}}
@@ -40,7 +35,6 @@
 		<!-- set variable to position across the full page if there is no image -->
 		{{ $.Scratch.Set "position" "full" }} 
 	{{ end }}
-
 	<!-- output the post date, title, summary (and image) in the correct positions -->
 	{{if eq ($.Scratch.Get "position") "left" }}
 		<!-- output a row with the image to the left -->
@@ -98,7 +92,6 @@
 		</div>
 	{{end}} 
 {{end}}
-
 	<!-- create a list of pages -->
 	{{ range .Data.Pages }} 
 		{{ if eq .Type "pages" }}
@@ -112,7 +105,6 @@
 			</div>
 		{{ end }} 
 	{{ end }}
-
 	<!-- insert footer section -->
 	{{ partial "footer.html" . }}
 </body>
